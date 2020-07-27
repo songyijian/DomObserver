@@ -1,4 +1,4 @@
-# DomMutationObserver DOM 观察对象
+# DomObserver( DOM 观察对象 )
 
 
 

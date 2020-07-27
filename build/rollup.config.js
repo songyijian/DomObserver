@@ -4,6 +4,7 @@ const commonjs = require('rollup-plugin-commonjs');
 const json = require('rollup-plugin-json');
 const resolve = require('rollup-plugin-node-resolve');
 // import { version } from '../package.json';
+
 const itemName = require('./projectName')//'test'
 const resolveFile = function(...dir){return path.join(__dirname,`../${itemName}`, ...dir)};
 
@@ -16,9 +17,8 @@ const plugins = [
     // presets:[["@babel/plugin-proposal-private-methods", { "loose": true }]],
     presets: [['@babel/preset-env', { modules: false }] ],
     plugins: [["@babel/plugin-transform-classes", { "loose": true}] ]
-  })
+  }),
 ]
-
 
 module.exports = [
   {
