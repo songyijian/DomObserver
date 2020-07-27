@@ -1,5 +1,3 @@
-
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 function type(o) {
   return Object.prototype.toString.call(o).slice(8, -1);
 }
@@ -183,4 +181,4 @@ var DomObserver = /*#__PURE__*/function () {
 }();
 DomObserver.config = {};
 
-window.DomObserver = DomObserver;
+export default DomObserver;
