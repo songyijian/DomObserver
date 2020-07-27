@@ -156,6 +156,3 @@ export default class DomObserver {
 }
 
 DomObserver.config = {}
-
-
-

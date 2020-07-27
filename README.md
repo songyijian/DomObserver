@@ -12,6 +12,17 @@
 - attributesFilter：值为一个数组，表示需要观察的特定属性（比如['class', 'str']）。
 
 ```
+
+// 声明配置
+new DomObserver( 
+  dom = document,  // 监听node容器
+  config = {}     // 监听配置
+)
+
+// 全局配置
+DomObserver.config = {}
+
+// 可配置项
 config = {
   // MutationObserver原始api ------
   attributes: true, 
@@ -24,7 +35,6 @@ config = {
   // DomObserver拓展api ----------
   attrTagFilter: ['p','item'], // 需要观察的特定标签的属性 ['p','div']些标签的属性
 
-
   rmTagFilter:['a'],    // 删除的标签，小写
   rmNodesFilter:[$('u')[0]], //指定节点被删除
   addTagFilter:['a'], //添加的标签类型，不支持addNodesFilter
@@ -32,43 +42,33 @@ config = {
   // 保留字段
   parenTagFilter:[] // 可以监听的tag类型
   parenNodeFilter:[] // 指定那些节点被监听
-
 }
-
-// 声明配置
-new DomObserver( dom, config )
-
-// 全局配置
-DomObserver.config = {}
 
 ```
 
 ## api
 ```
 var ds = new DomObserver( dom, config )
-  ds.observe() // 启动监听
+  ds.observe() // 启动监听，实例时自动监听
   ds.disconnect() // 卸载监听
 
-  ds.childList(()=>{}) // dom变化时执行回调
-  ds.addChildList(()=>{}) // dom删除时执行回调
-  ds.rmChildList(()=>{})  // dom添加时执行回调
-  ds.attributes(()=>{})  // 属性变化时执行回调
-  ds.change(()=>{}) // 配置内所以变化都会时执行回调
+  ds.childList((mitem) => {}) // dom变化时执行回调
+  ds.addChildList((mitem) => {}) // dom添加时执行回调
+  ds.rmChildList((mitem) => {})  // dom删除时执行回调
+  ds.attributes((mitem) => {})  // 属性变化时执行回调
+  ds.change((mitem) => {}) // 配置内所以变化都会时执行回调
 
-  ds.update(dom = document, config = {}) //修改配置
 
-```
 
-```
-
-type:观察的变动类型（attribute、characterData或者childList）。
-target:发生变动的DOM对象。
-addedNodes:新增的DOM对象。
-removeNodes:删除的DOM对象。
-previousSibling:前一个同级的DOM对象，如果没有则返回null。
-nextSibling:下一个同级的DOM对象，如果没有就返回null。
-attributeName:发生变动的属性。如果设置了attributeFilter，则只返回预先指定的属性。
-oldValue:变动前的值。这个属性只对attribute和characterData变动有效，如果发生childList变动，则返回null。
+mitem
+  type:观察的变动类型（attribute、characterData或者childList）。
+  target:发生变动的DOM对象。
+  addedNodes:新增的DOM对象。
+  removeNodes:删除的DOM对象。
+  previousSibling:前一个同级的DOM对象，如果没有则返回null。
+  nextSibling:下一个同级的DOM对象，如果没有就返回null。
+  attributeName:发生变动的属性。如果设置了attributeFilter，则只返回预先指定的属性。
+  oldValue:变动前的值。这个属性只对attribute和characterData变动有效，如果发生childList变动，则返回null。
 
 ```
 
