@@ -3,10 +3,13 @@ const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
 const json = require('rollup-plugin-json');
 const resolve = require('rollup-plugin-node-resolve');
-// import { version } from '../package.json';
+const package = require('../package');
 
-const itemName = require('./projectName')//'test'
-const resolveFile = function(...dir){return path.join(__dirname,`../${itemName}`, ...dir)};
+const resolveFile = function(...dir){return path.join(__dirname,`../`, ...dir)};
+const moduleName = 'DomObserver'
+const pname = package.name
+const pversion = package.version
+
 
 const plugins = [
   commonjs(),
@@ -14,28 +17,43 @@ const plugins = [
   resolve(),
   babel({
     babelrc: false,
-    // presets:[["@babel/plugin-proposal-private-methods", { "loose": true }]],
     presets: [['@babel/preset-env', { modules: false }] ],
     plugins: [["@babel/plugin-transform-classes", { "loose": true}] ]
   }),
 ]
 
+
 module.exports = [
   {
-    input: resolveFile('src/iife.js'),
-    output: [{
-      file: resolveFile('dist/DomObserver.iife.js'),
-      format: 'iife'
-    }],
+    input: resolveFile('./src/index.js'),
+    output: [
+      {
+        file: resolveFile(`dist/index.js`),
+        format: 'cjs',
+      }
+    ], 
     plugins
   },
   {
-    input: resolveFile('src/esm.js'),
-    output: [{
-      file: resolveFile('dist/DomObserver.esm.js'),
-      format: 'esm'
-    }],
+    input: resolveFile('./src/index.js'),
+    output: [
+      {
+        file: resolveFile(`dist/${pname}.umd.js`),
+        name:moduleName,
+        format: 'umd',
+      }
+    ], 
+    plugins
+  },
+  {
+    input: resolveFile('./src/index.js'),
+    output: [
+      {
+        file: resolveFile(`dist/${pname}.iife.${pversion}.js`),
+        name:moduleName,
+        format: 'iife',
+      }
+    ], 
     plugins
   }
 ]
-

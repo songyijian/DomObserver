@@ -1,4 +1,4 @@
-(function () {
+var DomObserver = (function () {
   'use strict';
 
   function type(o) {
@@ -184,6 +184,6 @@
   }();
   DomObserver.config = {};
 
-  window.DomObserver = DomObserver;
+  return DomObserver;
 
 }());
