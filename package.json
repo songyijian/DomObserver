@@ -1,6 +1,6 @@
 {
   "name": "domobserver",
-  "description": "dom变化静态器",
+  "description": "dom变化监视器",
   "main": "./dist/index.js",
   "keywords": [
     "dom",
@@ -10,11 +10,7 @@
     "tag",
     "node"
   ],
-  "author": {
-    "name": "yijian.song",
-    "email": "397032724@qq.com",
-    "url": "https://github.com/songyijian"
-  },
+  "author": "yijian.song <397032724@qq.com> (https://github.com/songyijian)",
   "version": "1.0.0",
   "directories": {
     "test": "test"
@@ -42,5 +38,13 @@
     "build": "rollup -c ./build/rollup.config.prod.js",
     "pushnpm": "npm run build && git add . && git commit -m 'npm publish' && git push && npm publish"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/songyijian/DomObserver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/songyijian/DomObserver/issues"
+  },
+  "homepage": "https://github.com/songyijian/DomObserver#readme"
 }
