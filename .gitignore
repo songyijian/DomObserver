@@ -1,2 +1,13 @@
-node_modules
-node_modules
+.DS_Store
+.babelrc
+.gitignore
+*.log
+*.md
+
+
+node_modules/
+build/
+demo/
+src/
+dist/*
+!/dist/index.js
